@@ -1,0 +1,43 @@
+h1{
+    color: rgb(120, 147, 255);
+    text-align:center;
+    font-family:Arial, 
+    Helvetica, sans-serif; 
+    font-size: 16pt;
+    font-weight: bolder;
+}
+
+h2{
+    color:rgb(98, 120, 209);
+    text-align:center; 
+    font-family:Arial, 
+    Helvetica, sans-serif; 
+    font-size: 12pt;
+}
+
+h3{
+    color:rgb(70, 87, 158); 
+    text-align:center; 
+    font-family:Arial, 
+    Helvetica, sans-serif; 
+    font-size: 10pt;
+}
+
+a{
+    color:rgb(58, 73, 133);
+    text-align:center; 
+    font-family:Arial, 
+    Helvetica, sans-serif; 
+    font-size: 10pt;
+    font-weight:lighter
+}
+
+#container{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+}
+
+body{
+    background-color: #ffffff;
+}

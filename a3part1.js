@@ -1,0 +1,112 @@
+var canvas;
+var ctx;
+var w = 1000;
+var h = 700;
+var o1 = {
+    x: w/2,
+    y: h/2,
+    w: 100,
+    h: 100,
+    c: 0,
+    a: 0.5,
+    random: 0,
+    change: {
+        x: 0, 
+        y: 0,
+        r: 0,
+        c: 0,
+        a: 0,
+        random: 0,
+    }
+}
+
+setUpCanvas();
+animationLoop();
+
+function animationLoop(){
+    clear();
+    rect(o1);
+    updateData();
+
+    requestAnimationFrame(animationLoop)
+}
+
+function torus (o){
+    if(o.x>w){
+        o.x=0;
+    }
+    if(o.x<0){
+        o.x=w;
+    }
+    if(o.y>h){
+        o.y=0;
+    }
+    if(o.y<0){
+        o.y=h;
+    }
+}
+function bounce(o){
+    if(o){
+    if(o.x>w || o.x<0){
+        // console.log("bounce");
+        o.change.x *= -1;
+    }
+    if(o.y>h || o.y <0){
+        o.change.y *= -1;
+    }
+    }
+}
+function updateData(o){
+    o.x+=o.change.x;
+    o.y+=o.change.y;
+    o.w+=o.change.w;
+    o.h+=o.change.h;
+    o.r+=o.change.r;
+    o.c+=o.change.c;
+    o.a+=o.change.a;
+    o.random+=o.change.random;
+}
+function clear(){
+    ctx.clearRect(0,0,w,h);
+}
+function circle_arc(o){
+    ctx.beginPath();
+    ctx.arc(o.x,o.y,o.r,0, 2*Math.PI);
+    ctx.fillStyle = "hsla("+o.c+", 100%, 50%, "+o.a+")";
+    ctx.fill();
+
+}
+function rect(o){
+    var x =o.x;
+    var y =o.y;
+    o.x=o.x-o.w/2;
+    o.y=o.y-o.h/2
+    ctx.beginPath();
+    ctx.moveTo(o.x+rand(o.random),o.y+rand(o.random))
+    ctx.lineTo(o.x+o.w+rand(o.random),o.y+rand(o.random))
+    ctx.lineTo(o.x+o.w+rand(o.random),o.y+o.h+rand(o.random))
+    ctx.lineTo(o.x+rand(o.random),o.y+o.h+rand(o.random))
+    ctx.closePath();
+    ctx.fillStyle="hsla("+o.c+",100%,50%,"+o.a+")";
+    ctx.lineWidth=o.lw;
+    ctx.fill();
+    o.x = x;
+    o.y = y;
+}
+function rand(range){
+    var result = Math.random()*range;
+    return result;
+}
+function randn(range){
+    var result = Math.random()*range-range/2;
+    return result
+}
+function setUpCanvas(){
+    canvas=document.getElementById("myCanvas");
+    ctx=canvas.getContext("2d");
+    canvas.width=w;
+    canvas.height=h;
+    canvas.style.border="3px solid blue";
+}
+
+console.log("assignment 3") 
